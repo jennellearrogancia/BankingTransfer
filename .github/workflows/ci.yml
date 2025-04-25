@@ -1,4 +1,4 @@
-name: ATM Unit Tests CI  # Optional workflow name
+name: Banking Unit Tests CI  # Optional workflow name
 
 on: [push, pull_request]
 
