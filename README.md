@@ -1,9 +1,9 @@
 # 🏧 ATM Command Line App
 
-This project simulates an ATM system via the command line with the following features:
+This project simulates a Simple Banking System via the command line with the following features:
 - User login (account number + PIN)
-- Balance check
-- Deposit and Withdraw money
+- Deposit, withdraw, and transfer to another user
+- View Transaction History
 - Unit testing
 - Continuous Integration with GitHub Actions
 
