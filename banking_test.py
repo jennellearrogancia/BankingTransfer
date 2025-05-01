@@ -151,6 +151,11 @@ class TestAuthentication(unittest.TestCase):
             transfer(sender, "67890", -50)
         self.assertEqual(str(context.exception), "Amount must be positive.")
 
+    def test_transfer_zero_amount(self):
+        sender = accounts["12345"]
+        with self.assertRaises(ValueError) as context:
+             transfer(sender, "67890", 0)
+        self.assertEqual(str(context.exception), "Amount must be positive.")
 
 if __name__ == "__main__":
     unittest.main()
