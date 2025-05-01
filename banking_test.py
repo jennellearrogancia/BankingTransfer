@@ -1,5 +1,5 @@
 import unittest
-from banking import authenticate, accounts
+from Banking import authenticate, accounts
 
 
 class TestAuthentication(unittest.TestCase):
