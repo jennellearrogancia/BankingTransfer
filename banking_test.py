@@ -161,7 +161,7 @@ class TestAuthentication(unittest.TestCase):
         sender = accounts["12345"]
         with self.assertRaises(ValueError) as context:
             transfer(sender, "67890", "one hundred")
-        self.assertEqual(str(context.exception), "Amount must be number.")
+        self.assertEqual(str(context.exception), "Amount must be a number.")
 
 
 if __name__ == "__main__":
