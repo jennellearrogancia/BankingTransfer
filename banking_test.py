@@ -49,6 +49,16 @@ class TestAuthentication(unittest.TestCase):
         new_balance = deposit(account, 5, "EUR")
         self.assertEqual(new_balance, old_balance + 275)
 
+    def test_deposit_exceeds_limit(self):
+        account = accounts["12345"]
+        with self.assertRaises(ValueError) as context:
+            deposit(account, MAX_DEPOSIT_AMOUNT + 1, "PHP")
+        self.assertEqual(
+            str(context.exception),
+            f"Deposit amount exceeds the max limit of {MAX_DEPOSIT_AMOUNT} PHP."
+        )
+
+
 
 if __name__ == "__main__":
     unittest.main()
