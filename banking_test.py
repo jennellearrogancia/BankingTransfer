@@ -1,5 +1,5 @@
 import unittest
-from Banking import authenticate, accounts
+from Banking import authenticate, accounts, deposit
 
 
 class TestAuthentication(unittest.TestCase):
@@ -30,6 +30,12 @@ class TestAuthentication(unittest.TestCase):
     def test_invalid_account(self):
         account = authenticate("00000", "1111")  # Invalid account number
         self.assertIsNone(account)
+
+    def test_deposit_positive_amount_php(self):
+        account = accounts["12345"]
+        old_balance = account["balance"]
+        new_balance = deposit(account, 200, "PHP")
+        self.assertEqual(new_balance, old_balance + 200)
 
 
 if __name__ == "__main__":
