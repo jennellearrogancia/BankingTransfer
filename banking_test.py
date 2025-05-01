@@ -125,7 +125,7 @@ class TestAuthentication(unittest.TestCase):
     def test_overdraft_prevention(self):
         account = accounts["67890"]
         with self.assertRaises(ValueError):
-            withdraw(account account["balance"] + 1)
+            withdraw(account, account["balance"] + 1)
 
     def test_transaction_history_after_withdraw(self):
         account = accounts["12345"]
