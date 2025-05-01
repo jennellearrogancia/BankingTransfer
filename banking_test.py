@@ -105,7 +105,7 @@ class TestAuthentication(unittest.TestCase):
 
     def test_withdraw_string_amount(self):
         account = accounts["12345"]
-        with self.assertRaises(TypeErrorError) as context:
+        with self.assertRaises(ValueError) as context:
             withdraw(account, "fifty")
         self.assertEqual(str(context.exception), "Amount must be a number.")
 
