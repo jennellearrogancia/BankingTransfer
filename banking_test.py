@@ -91,6 +91,13 @@ class TestAuthentication(unittest.TestCase):
             "Amount must be a positive number and not zero or negative."
         )
 
+    def test_withdraw_negative_amount(self):
+        account = accounts["12345"]
+        with self.assertRaises(ValueErro) as context:
+            withdraw(account, -100)
+         self.assertEqual(str(context.exception), "Amount must be positive.")
+
+
 
 if __name__ == "__main__":
     unittest.main()
