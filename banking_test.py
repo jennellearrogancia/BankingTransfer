@@ -82,6 +82,15 @@ class TestAuthentication(unittest.TestCase):
             "Amount must be a positive number and not zero or negative."
         )
 
+    def test_deposit_string_amount(self):
+        account = accounts["12345"]
+        with self.assertRaises(ValueError) as context:
+            deposit(account, "hundred", "USD")
+        self.assertEqual(
+            str(context.exception),
+            "Amount must be a positive number and not zero or negative."
+        
+
 
 if __name__ == "__main__":
     unittest.main()
