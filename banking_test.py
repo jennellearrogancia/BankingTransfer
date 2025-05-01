@@ -64,6 +64,15 @@ class TestAuthentication(unittest.TestCase):
             deposit(account, 100, "AUD")
         self.assertEqual(str(context.exception), "Unsupported currency: AUD")
 
+    def test_deposit_negative_amount(self):
+        account = accounts["12345"]
+        with self.assertRaises(ValueError) as context:
+            deposit(account, -50, "USD")
+        self.assertEqual(
+            str(context.exception),
+            "Amount must be a positive number and not zero or negative."
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
