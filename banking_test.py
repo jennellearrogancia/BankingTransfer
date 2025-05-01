@@ -94,7 +94,10 @@ class TestAuthentication(unittest.TestCase):
     def test_transaction_history_after_deposit(self):
         account = accounts["12345"]
         deposit(account, 150, "PHP")
-        self.assertIn("Deposited 150.00 PHP (converted to 150.00 PHP)", account["transactions"])
+        self.assertIn(
+            "Deposited 150.00 PHP (converted to 150.00 PHP)",
+            account["transactions"]
+        )
 
     def test_withdraw_negative_amount(self):
         account = accounts["12345"]
