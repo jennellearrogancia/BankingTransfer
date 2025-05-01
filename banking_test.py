@@ -127,6 +127,23 @@ class TestAuthentication(unittest.TestCase):
         with self.assertRaises(ValueError):
             withdraw(account, account["balance"] + 1)
 
+    def test_successful_transfer(self):
+        sender = accounts["12345"]
+        receiver = accounts["67890"]
+        transfer_amount = 300.0
+        old_sender_balance = sender["balance"]
+        old_receiver_balance = receiver["balance"]
+
+        transfer (sender, "67890", transfer_amount)
+
+        self.assertEqual(sender["balance"], old_sender_balance - transfer_amount)
+        self.assertEqual(receiver["balance"], old_receiver_balance + transfer_amount)
+        self.assertIn(
+            f"Transferred {transfer_amount:.2f} to 67890", sender["transactions"]
+        )
+        self.assertIn(
+            "Received 300.00 from sender", receiver["transactions"]
+    )
 
 if __name__ == "__main__":
     unittest.main()
