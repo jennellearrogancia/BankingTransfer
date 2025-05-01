@@ -58,6 +58,12 @@ class TestAuthentication(unittest.TestCase):
             f"Deposit amount exceeds the max limit of {MAX_DEPOSIT_AMOUNT} PHP."
         )
 
+    def test_deposit_invalid_currency(self):
+        account = accounts["12345"]
+        with self.assertRaises(ValueError) as context:
+            deposit(account, 100, "AUD")
+        self.assertEqual(str(context.exception), "Unsupported currency: AUD")
+
 
 if __name__ == "__main__":
     unittest.main()
