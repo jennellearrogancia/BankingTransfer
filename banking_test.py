@@ -103,6 +103,12 @@ class TestAuthentication(unittest.TestCase):
             withdraw(account, 0)
         self.assertEqual(str(context.exception), "Amount must be positive.")
 
+    def test_withdraw_string_amount(self):
+        account = accounts["12345"]
+        with self.assertRaises(TypeErrorError) as context:
+            withdraw(account, "fifty")
+        self.assertEqual(str(context.exception), "Amount must be a number.")
+
 
 if __name__ == "__main__":
     unittest.main()
