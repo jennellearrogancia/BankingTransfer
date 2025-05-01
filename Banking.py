@@ -26,6 +26,7 @@ MAX_FAILED_ATTEMPTS = 3
 
 def authenticate(account_number, pin):
     account = accounts.get(account_number)
+
     if not account:
         return None
 
@@ -57,6 +58,7 @@ def main():
     pin = input("Enter your PIN: ")
 
     account = authenticate(acc_no, pin)
+
     if not account:
         print("Invalid credentials. Exiting...")
         sys.exit()

@@ -1,5 +1,5 @@
 import unittest
-from Banking import authenticate, accounts
+from banking import authenticate, accounts
 
 
 class TestAuthentication(unittest.TestCase):
@@ -23,12 +23,12 @@ class TestAuthentication(unittest.TestCase):
         self.assertIsNotNone(account)
 
     def test_failed_login(self):
-        for _ in range(4):
+        for _ in range(4):  # 3 failed attempts should lock the account
             account = authenticate("12345", "9999")
             self.assertIsNone(account)
 
     def test_invalid_account(self):
-        account = authenticate("00000", "1111")
+        account = authenticate("00000", "1111")  # Invalid account number
         self.assertIsNone(account)
 
 
