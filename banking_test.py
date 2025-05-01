@@ -37,6 +37,12 @@ class TestAuthentication(unittest.TestCase):
         new_balance = deposit(account, 200, "PHP")
         self.assertEqual(new_balance, old_balance + 200)
 
+    def test_deposit_positive_amount_usd(self):
+        account = accounts["12345"]
+        old_balance = account["balance"]
+        new_balance = deposit(account, 10, "USD")
+        self.assertEqual(new_balance, old_balance + 500)
+
 
 if __name__ == "__main__":
     unittest.main()
