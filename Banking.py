@@ -1,6 +1,5 @@
-import sys
 import time
-
+import sys
 
 accounts = {
     "12345": {
@@ -19,10 +18,8 @@ accounts = {
     },
 }
 
-
 LOCKOUT_TIME = 3600
 MAX_FAILED_ATTEMPTS = 3
-
 
 def authenticate(account_number, pin):
     account = accounts.get(account_number)
@@ -50,37 +47,15 @@ def authenticate(account_number, pin):
         account["last_failed_time"] = time.time()
         return None
 
+def main():
+    print("Welcome to the Simple Banking System")
+    acc_no = input("Enter your Account Number: ")
+    pin = input("Enter your PIN: ")
 
-EXCHANGE_RATES = {
-    "USD": 50,
-    "EUR": 55,
-    "GBP": 65,
-}
+    account = authenticate(acc_no, pin)
+    if not account:
+        print("Invalid credentials. Exiting...")
+        sys.exit()
 
-MAX_DEPOSIT_AMOUNT = 50000
-
-
-def deposit(account, amount, currency="PHP"):
-    if not isinstance(amount, (int, float)) or amount <= 0:
-        raise ValueError(
-            "Amount must be a positive number and not zero or negative."
-        )
-
-    if currency != "PHP":
-        if currency not in EXCHANGE_RATES:
-            raise ValueError(f"Unsupported currency: {currency}")
-        amount_in_php = amount * EXCHANGE_RATES[currency]
-    else:
-        amount_in_php = amount
-
-    if amount_in_php > MAX_DEPOSIT_AMOUNT:
-        raise ValueError(
-            f"Deposit amount exceeds the max limit of {MAX_DEPOSIT_AMOUNT} PHP."
-        )
-
-    account["balance"] += amount_in_php
-    account["transactions"].append(
-        f"Deposited {amount:.2f} {currency} "
-        f"(converted to {amount_in_php:.2f} PHP)"
-    )
-    return account["balance"]
+if __name__ == "__main__":
+    main()
