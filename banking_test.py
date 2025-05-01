@@ -134,7 +134,7 @@ class TestAuthentication(unittest.TestCase):
         old_sender_balance = sender["balance"]
         old_receiver_balance = receiver["balance"]
 
-        transfer (sender, "67890", transfer_amount)
+        transfer(sender, "67890", transfer_amount)
 
         self.assertEqual(sender["balance"], old_sender_balance - transfer_amount)
         self.assertEqual(receiver["balance"], old_receiver_balance + transfer_amount)
@@ -142,8 +142,8 @@ class TestAuthentication(unittest.TestCase):
             f"Transferred {transfer_amount:.2f} to 67890", sender["transactions"]
         )
         self.assertIn(
-            "Received 300.00 from sender", receiver["transactions"]
-    )
+            "Received 300.00 from sender", receiver["transactions"])
+
 
 if __name__ == "__main__":
     unittest.main()
