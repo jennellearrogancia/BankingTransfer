@@ -90,7 +90,6 @@ class TestAuthentication(unittest.TestCase):
             str(context.exception),
             "Amount must be a positive number and not zero or negative."
         )
-        
 
 
 if __name__ == "__main__":
