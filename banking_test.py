@@ -99,6 +99,11 @@ class TestAuthentication(unittest.TestCase):
             account["transactions"]
         )
 
+    def test_transaction_history_after_withdraw(self):
+        account = accounts["12345"]
+        withdraw(account, 100)
+        self.assertIn("Withdrew 100.00", account["transactions"])
+
     def test_withdraw_negative_amount(self):
         account = accounts["12345"]
         with self.assertRaises(ValueError) as context:
@@ -122,10 +127,13 @@ class TestAuthentication(unittest.TestCase):
         with self.assertRaises(ValueError):
             withdraw(account account["balance"] + 1)
 
+<<<<<<< HEAD
     def test_transaction_history_after_withdraw(self):
         account = accounts["12345"]
         withdraw(account, 100)
         self.assertIn("Withdrew 100.00", account["transactions"])
+=======
+>>>>>>> d34f9493fe02c2a5f7f9d533b438c0f4833b138a
 
 if __name__ == "__main__":
     unittest.main()
