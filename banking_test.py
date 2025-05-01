@@ -89,6 +89,7 @@ class TestAuthentication(unittest.TestCase):
         self.assertEqual(
             str(context.exception),
             "Amount must be a positive number and not zero or negative."
+        )
         
 
 
