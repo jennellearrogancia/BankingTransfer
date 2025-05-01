@@ -1,5 +1,5 @@
 import unittest
-from Banking import authenticate, accounts, deposit, MAX_DEPOSIT_AMOUNT
+from Banking import authenticate, accounts, deposit, withdraw, MAX_DEPOSIT_AMOUNT
 
 
 class TestAuthentication(unittest.TestCase):
