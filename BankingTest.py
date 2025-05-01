@@ -1,0 +1,36 @@
+import unittest
+from Banking import authenticate, accounts
+
+
+class TestAuthentication(unittest.TestCase):
+    def setUp(self):
+        # Reset account balances and transaction histories before each test
+        accounts["12345"].update({
+            "balance": 1000.0,
+            "transactions": [],
+            "failed_attempts": 0,
+            "last_failed_time": None
+        })
+        accounts["67890"].update({
+            "balance": 500.0,
+            "transactions": [],
+            "failed_attempts": 0,
+            "last_failed_time": None
+        })
+
+    def test_successful_login(self):
+        account = authenticate("12345", "1111")
+        self.assertIsNotNone(account)
+
+    def test_failed_login(self):
+        for _ in range(4):
+            account = authenticate("12345", "9999")
+            self.assertIsNone(account)
+
+    def test_invalid_account(self):
+        account = authenticate("00000", "1111")
+        self.assertIsNone(account)
+
+
+if __name__ == "__main__":
+    unittest.main()
