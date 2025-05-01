@@ -91,6 +91,11 @@ class TestAuthentication(unittest.TestCase):
             "Amount must be a positive number and not zero or negative."
         )
 
+    def test_transaction_history_after_deposit(self):
+        account = accounts["12345"]
+        deposit(account, 150, "PHP")
+        self.assertIn("Deposited 150.00 PHP", account["transactions"])
+
     def test_withdraw_negative_amount(self):
         account = accounts["12345"]
         with self.assertRaises(ValueError) as context:
