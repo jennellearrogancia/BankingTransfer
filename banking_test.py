@@ -1,5 +1,5 @@
 import unittest
-from Banking import authenticate, accounts, deposit, MAX_DEPOSIT_AMOUNTgit add banking_test.py
+from Banking import authenticate, accounts, deposit, MAX_DEPOSIT_AMOUNT
 
 
 class TestAuthentication(unittest.TestCase):
