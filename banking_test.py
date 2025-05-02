@@ -169,6 +169,16 @@ class TestAuthentication(unittest.TestCase):
             transfer(sender, "67890", sender["balance"] + 100)
         self.assertEqual(str(context.exception), "Insufficient balance.")
 
+    def test_transfer_to_nonexistent_account(self):
+        sender = accounts["12345"]
+        initial_balance = sender["balance"]
+        with self.assertRaises(ValueError) as context:
+            transfer(sender, "00000", 50)
+        self.assertEqual(
+            str(context.exception), "Receiver account not found. Transfer canceled."
+        )
+        self.assertEqual(sender["balance"], initial_balance)
+
 
 if __name__ == "__main__":
     unittest.main()
