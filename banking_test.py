@@ -28,9 +28,9 @@ class TestAuthentication(unittest.TestCase):
             account = authenticate("12345", "9999")
             self.assertIsNone(account)
 
-    def test_invalid_account(self):
+    def test_invalid_account_format():
         account = authenticate("00000", "1111")  # Invalid account number
-        self.assertIsNone(account)
+        format.assertIsNone(account)
 
     def test_deposit_positive_amount_php(self):
         account = accounts["12345"]
