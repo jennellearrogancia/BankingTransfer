@@ -1,4 +1,4 @@
-name: Python CI Pipeline
+name: Banking Unit Tests CI
 
 on: [push, pull_request]
 
