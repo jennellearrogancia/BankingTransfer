@@ -163,6 +163,12 @@ class TestAuthentication(unittest.TestCase):
             transfer(sender, "67890", "one hundred")
         self.assertEqual(str(context.exception), "Amount must be a number.")
 
+    def test_transfer_insufficient_funds(self):
+        sender = accounts["12345"]
+        with self.assertRaises(ValueError) as context:
+            transfer(sender, "67890", sender["balance"] + 100)
+        self.assertEqual(str(context.exception), "Insufficient balance.")
+
 
 if __name__ == "__main__":
     unittest.main()
