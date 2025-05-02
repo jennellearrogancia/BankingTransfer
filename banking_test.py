@@ -179,6 +179,10 @@ class TestAuthentication(unittest.TestCase):
         )
         self.assertEqual(sender["balance"], initial_balance)
 
+    def test_invalid_account(self):
+        account = authenticate("00000", "1111")
+        self.assertIsNone(account)
+
 
 if __name__ == "__main__":
     unittest.main()
