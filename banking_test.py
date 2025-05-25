@@ -91,7 +91,6 @@ class TestBankingSystem(unittest.TestCase):
             )
         )
 
-
     def test_deposit_with_unsupported_currency(self):
         account = accounts["12345"]
         with self.assertRaises(ValueError) as context:
