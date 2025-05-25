@@ -43,7 +43,9 @@ class TestBankingSystem(unittest.TestCase):
 
     def test_login_with_invalid_account_number(self):
         account = authenticate("00000", "1111")
-        self.assertIsNone(account, "Invalid account number should not authenticate.")
+        self.assertIsNone(
+            account,
+            "Invalid account number should not authenticate.")
 
     # FOR DEPOSIT TESTS
 
@@ -83,14 +85,21 @@ class TestBankingSystem(unittest.TestCase):
             deposit(account, MAX_DEPOSIT_AMOUNT + 1, "PHP")
         self.assertEqual(
             str(context.exception),
-            f"Deposit amount exceeds the max limit of {MAX_DEPOSIT_AMOUNT} PHP."
+            (
+                f"Deposit amount exceeds the max limit of "
+                f"{MAX_DEPOSIT_AMOUNT} PHP."
+            )
         )
+
 
     def test_deposit_with_unsupported_currency(self):
         account = accounts["12345"]
         with self.assertRaises(ValueError) as context:
             deposit(account, 100, "AUD")
-        self.assertEqual(str(context.exception), "Unsupported currency: AUD")
+        self.assertEqual(
+            str(context.exception),
+            "Unsupported currency: AUD"
+        )
 
     def test_deposit_with_negative_amount(self):
         account = accounts["12345"]

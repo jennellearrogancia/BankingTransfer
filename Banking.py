@@ -36,8 +36,10 @@ def authenticate(account_number, pin):
         if time_since_last_failed < LOCKOUT_TIME:
             lockout_remaining = LOCKOUT_TIME - time_since_last_failed
             print(
-                f"Account locked. Try again in {int(lockout_remaining)} seconds."
+                f"Account locked. Try again in "
+                f"{int(lockout_remaining)} seconds."
             )
+
             return None
 
         account["failed_attempts"] = 0
@@ -75,7 +77,8 @@ def deposit(account, amount, currency="PHP"):
 
     if amount_in_php > MAX_DEPOSIT_AMOUNT:
         raise ValueError(
-            f"Deposit amount exceeds the max limit of {MAX_DEPOSIT_AMOUNT} PHP."
+            f"Deposit amount exceeds the max limit of "
+            f"{MAX_DEPOSIT_AMOUNT} PHP."
         )
 
     account["balance"] += amount_in_php
